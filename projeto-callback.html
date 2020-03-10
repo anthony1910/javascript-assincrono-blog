@@ -114,6 +114,30 @@
 
                         let divGame = setGameHTML(game);
 
+                        divGame.addEventListener('click', e => {
+
+                            setGameLoad(gamesListRelationed);
+
+                            let gameTag = e.currentTarget;
+
+                            let gamename = gameTag.dataset.gamename;
+
+                            getRelatedGamesByName(gamename, function(gamesRelationed) {
+
+                                gamesListRelationed.innerHTML = '';
+
+                                gamesRelationed.results.forEach(game => {
+
+                                    let divGameRelationed = setGameHTML(game);
+
+                                    gamesListRelationed.append(divGameRelationed);
+
+                                });
+
+                            });
+
+                        });
+
                         gamesListPrincipal.append(divGame);
 
                     });
